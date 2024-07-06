@@ -4,6 +4,8 @@ class Usuario:
        self.idade=idade
        self.cpf=cpf
        
-isaac=Usuario('isaac',15,1234567890)       
-Usuario[isaac]
-print(Usuario.isaac)
+isaac = Usuario('isaac',15,1234567890)       
+
+print(isaac.nome)
+print(isaac.idade)
+print(isaac.cpf)
