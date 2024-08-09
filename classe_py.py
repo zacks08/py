@@ -1,15 +1,15 @@
 import csv
 
 class Aluno:
-    def __init__(self, idade, nome, apelido, ocorrencias):
-        self.__idade = idade
+    def __init__(self, nascimento, nome, apelido, ocorrencias):
+        self.__nascimento = nascimento
         self.__nome = nome
         self.__apelido = apelido
         self.__ocorrencias = ocorrencias
 
     @property
-    def idade(self):
-        return self.__idade
+    def nascimento(self):
+        return self.__nascimento
     
     @property
     def nome(self):
@@ -35,8 +35,8 @@ class Escola:
                 leitor_csv = csv.reader(arquivo_csv)
                 next(leitor_csv)  # Ignorar cabeçalho
                 for linha in leitor_csv:
-                    idade, nome, apelido, ocorrencias = linha
-                    alunos.append(Aluno(int(idade), nome, apelido, int(ocorrencias)))
+                    nascimento, nome, apelido, ocorrencias = linha
+                    alunos.append(Aluno(int(nascimento), nome, apelido, int(ocorrencias)))
         except FileNotFoundError:
             print("Arquivo de alunos não encontrado. Iniciando com lista vazia.")
         return alunos
@@ -44,20 +44,20 @@ class Escola:
     def salvar_alunos(self):
         with open('alunos.csv', 'w', newline='', encoding='utf-8') as arquivo_csv:
             escritor_csv = csv.writer(arquivo_csv)
-            escritor_csv.writerow(['Idade', 'Nome', 'Apelido', 'Ocorrências'])
+            escritor_csv.writerow(['Nascimento', 'Nome', 'Apelido', 'Ocorrências'])
             for aluno in self.__alunos:
-                escritor_csv.writerow([aluno.idade, aluno.nome, aluno.apelido, aluno.ocorrencias])
+                escritor_csv.writerow([aluno.nascimento, aluno.nome, aluno.apelido, aluno.ocorrencias])
 
     def editar_aluno(self, indice):
         if 0 <= indice < len(self.__alunos):
             aluno = self.__alunos[indice]
             nome = input("Novo nome: ")
             apelido = input("Novo apelido: ")
-            idade = int(input("Nova idade: "))
+            nascimento = int(input("Nova data de nascimento(apenas numeros juntos sem separação): "))
             ocorrencias = int(input("Novas ocorrências: "))
             aluno._Aluno__nome = nome
             aluno._Aluno__apelido = apelido
-            aluno._Aluno__idade = idade
+            aluno._Aluno__nascimento = nascimento
             aluno._Aluno__ocorrencias = ocorrencias
             print("Aluno editado com sucesso!")
         else:
@@ -66,9 +66,9 @@ class Escola:
     def adicionar_aluno(self):
         nome = input("Nome: ")
         apelido = input("Apelido: ")
-        idade = int(input("Idade: "))
+        nascimento = int(input("Nascimento: "))
         ocorrencias = int(input("Ocorrências: "))
-        aluno = Aluno(idade, nome, apelido, ocorrencias)
+        aluno = Aluno(nascimento, nome, apelido, ocorrencias)
         self.__alunos.append(aluno)
         print("Aluno adicionado com sucesso!")
 
@@ -82,7 +82,7 @@ class Escola:
     def listar_alunos(self):
         print("Lista de Alunos:")
         for i, aluno in enumerate(self.__alunos):
-            print(f"{i+1}. Nome: {aluno.nome}, Apelido: {aluno.apelido}, Idade: {aluno.idade}, Ocorrências: {aluno.ocorrencias}")
+            print(f"{i+1}. Nome: {aluno.nome}, Apelido: {aluno.apelido}, nascimento: {aluno.nascimento}, Ocorrências: {aluno.ocorrencias}")
 
     def autenticar(self, senha):
         return senha == self.__senha_acesso
