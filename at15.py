@@ -1,9 +1,9 @@
 temperaturas = []
-# Mostrando os números primos
+
 
 
 while True:
-# Mostrando os números primos
+
     temperatura = input("Digite uma temperatura (ou 'sair' para encerrar): ")
     
     if temperatura.lower() == 'sair':
