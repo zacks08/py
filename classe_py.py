@@ -66,7 +66,7 @@ class Escola:
     def adicionar_aluno(self):
         nome = input("Nome: ")
         apelido = input("Apelido: ")
-        nascimento = int(input("Nascimento: "))
+        nascimento = int(input("Nascimento (Apenas números ): "))
         ocorrencias = int(input("Ocorrências: "))
         aluno = Aluno(nascimento, nome, apelido, ocorrencias)
         self.__alunos.append(aluno)
